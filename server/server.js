@@ -6,10 +6,9 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'dist')))
-// app.use(express.static(path.join(__dirname, 'node_modules')))
 const request = require("request")
 const mongoose = require('mongoose')
-const api = require('./routes/api')
+const api = require('./root/api')
 app.use("/", api)
 
 

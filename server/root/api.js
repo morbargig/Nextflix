@@ -18,7 +18,7 @@ router.get("/show/:showname", function (req, res) {
 
 router.get("/shows",function(req,res){
     Show.find({},function(err,show){
-    res.send(city)
+    res.send(show)
     })
 })
 

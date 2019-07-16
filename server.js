@@ -14,6 +14,6 @@ app.use("/", api)
 
 
 port = 3030
-mongoose.connect('mongodb://localhost/Shows', { useNewUrlParser: true }).then(() => {
+mongoose.connect('mongodb://localhost/tvShow', { useNewUrlParser: true }).then(() => {
     app.listen(port, () => console.log(`Running server on port ${port}`))
 })

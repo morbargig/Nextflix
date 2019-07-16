@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const ShowSchema = new Schema({
     name: String,
     language : String,
-    genres: String,
+    genres: [String],
     premiered: Date,
     rating: Number,
     mediumImg: String,
@@ -15,10 +15,10 @@ const ShowSchema = new Schema({
     summary: String,
     runTime: Number,
     status: String,
-    id: Number
+    id: Number,
 })
 
 
-const  Show = mongoose.model("Show", ShowSchema)
+const  Show = mongoose.model("show", ShowSchema)
 
 module.exports = Show

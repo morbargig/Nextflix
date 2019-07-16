@@ -1,7 +1,9 @@
 const request = require("request")
 const express = require('express')
 const router = express.Router()
-const Show = require("../dist/show")
+const watchedShow = require("../model/watchedShow")
+const blackList = require("../model/blackList")
+const wishList = require("../model/wishList")
 const bodyParser = require('body-parser')
 // const path = require('path')
 
@@ -34,27 +36,72 @@ router.get("/show/:showname", function (req, res) {
 
 })
 
-router.get("/shows",function(req,res){
-    Show.find({},function(err,show){
+router.get("/watchedShows",function(req,res){
+    watchedShow.find({},function(err,show){
     res.send(show)
     })
 })
 
-router.post('/show', function (req, res) {
+router.get("/blackList",function(req,res){
+    blackList.find({},function(err,show){
+    res.send(show)
+    console.log(show)
+    })
+})
+
+router.get("/wishList",function(req,res){
+    wishList.find({},function(err,show){
+    res.send(show)
+    })
+})
+
+router.post('/watchedShow', function (req, res) {
     let info = req.body
-     console.log(req.body)
-    let s1 = new Show(info)
-    s1.save()
+    let ws1 = new watchedShow(info)
+    ws1.save()
 
     res.end("saved")
 })
 
+router.post('/blackList', function (req, res) {
+    let info = req.body
+    let bl1 = new blackList(info)
+    bl1.save()
 
-router.delete('/show/:showname', function (req, res) {
+    res.end("saved")
+})
+
+router.post('/wishList', function (req, res) {
+    let info = req.body
+    let wl1 = new wishList(info)
+    wl1.save()
+
+    res.end("saved")
+})
+
+router.delete('/wishList/:showname', function (req, res) {
     // console.log("remove")
     const showName = req.params.showname
     // console.log(showName)
-    Show.findOneAndDelete({ name: showName }, function (err) {
+    wishList.findOneAndDelete({ name: showName }, function (err) {
+        res.end()
+    })
+})
+router.delete('/watchedShow/:showname', function (req, res) {
+    // console.log("remove")
+    const showName = req.params.showname
+    // console.log(showName)
+    watchedShow.findOneAndDelete({ name: showName }, function (err) {
+        res.end()
+    })
+})
+
+
+router.delete('/blackList/:showname', function (req, res) {
+    // console.log("remove")
+    const showName = req.params.showname
+    // console.log(showName)
+    blackList.findOneAndDelete({ name: showName }, function (err) {
         res.end()
     })
 })

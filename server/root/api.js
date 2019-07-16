@@ -17,9 +17,12 @@ router.get("/show/:showname", function (req, res) {
             genres: data.genres,
             premiered:data.premiered,
             rating:data.rating.average,
-            img:data.image.medium,
-            //imag:data.image.original
+            mediumImg:data.image.medium,
+            originalImag:data.image.original,
             summary:data.summary,
+            runTime:data.runtime,
+            status:data.status,
+            id:data.id
         }
 
         res.send(newData)

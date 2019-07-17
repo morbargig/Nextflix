@@ -57,6 +57,7 @@ router.get("/wishList",function(req,res){
 
 router.post('/watchedShow', function (req, res) {
     let info = req.body
+    // if(info !== )
     let ws1 = new watchedShow(info)
     ws1.save()
 

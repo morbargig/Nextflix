@@ -80,18 +80,18 @@ class TempManager {
     blackListRemove(showName) {
         $.ajax({
             method:"DELETE",
-            url:`/city/${showName}` ,
+            url:`/blackList/${showName}` ,
             success: function(data){
                 console.log(data)
             },
         })
     }
-
+    
 
     watchedShowsRemove(showName) {
         $.ajax({
             method:"DELETE",
-            url:`/city/${showName}` ,
+            url:`/watchedShow/${showName}` ,
             success: function(data){
                 console.log(data)
             },

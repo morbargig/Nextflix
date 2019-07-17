@@ -15,10 +15,10 @@
     <button id ="blackListButton"onclick="blackListLoadPage()">blackList</button>
     <button id ="wishListButton"onclick="wishListLoadPage()">wishList</button>
 
-  <input type="text" placeholder="search" id="input">
+  <input type="text" placeholder="search" id="input" required>
   <button id="searchbutton" onclick="showSearch()">Search</button>
 
-  <script id="template" type="text/x-handlebars-template">
+  <script id="first-template" type="text/x-handlebars-template">
 
     {{#each menu}}
     
@@ -36,6 +36,56 @@
     
   </script>
 
+  <script id="watchedShow-template" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="removeSohwButton">remove show</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
+
+
+  <script id="blackList-template" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="removeBlackListButton" >remove from blacklist</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
+
+  
+  <script id="wishList-template" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="watchedShowButton" >watchedShow</button>
+      <button class ="removeWishListButton">remove wishList</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
 
   <div class="showsInfo">
 

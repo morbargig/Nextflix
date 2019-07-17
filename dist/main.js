@@ -6,7 +6,7 @@ const render = new Render
 const blackListLoadPage = async function () {
     tempMeneger.blackList = []
     await tempMeneger.blackListDB()
-    const d = tempMeneger.blackList
+    let d = tempMeneger.blackList
     await render.renderer(d,'blackList')
 }
 
@@ -14,7 +14,7 @@ const blackListLoadPage = async function () {
 const watchedShowsLoadPage = async function () {
     tempMeneger.watchedShows = []
     await tempMeneger.watchedShowsDB()
-    const d = tempMeneger.watchedShows
+    let d = tempMeneger.watchedShows
 
     await render.renderer(d,'watchedShow')
         
@@ -24,35 +24,51 @@ const watchedShowsLoadPage = async function () {
 const wishListLoadPage = async function () {
     tempMeneger.wishList = []
     await tempMeneger.wishListDB()
-    const d = tempMeneger.wishList
+    let d = tempMeneger.wishList
     await render.renderer(d,'wishList')
 }
 
 //////////////////////////////////////////////////////////////////////
+const searchLoadPage = async function (){
+    tempMeneger.wishList = []
+    await render.renderer(tempMeneger.wishList,"first")
+}
 
 const showSearch = async function () {
+    tempMeneger.standby = []
     const input = $("#input").val()
     await tempMeneger.getShowData(input)
-    const d = tempMeneger.standby
-    console.log(d)
-    await render.renderer(d,"first")
+    await render.renderer(tempMeneger.standby,"first")
 }
 
 ///////////////////////////////////////////////////
 $("body").on("click", ".blackListButton", function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.blackListSave(name)
+
+    searchLoadPage()
 })
 
 $("body").on("click", ".watchedShowButton", function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.watchedShowSave(name)
+    searchLoadPage()
 })
 
 $("body").on("click", ".wishListButton", function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.wishListSave(name)
+    searchLoadPage()
 })
+
+$("body").on("click", ".watchedShowButtonInWishList",async function () {
+    const name = $(this).siblings('h2').text()
+    await tempMeneger.watchedShowwSave(name)
+    await tempMeneger.wishListRemove(name)
+    await wishListLoadPage()
+
+})
+
 
 ///////////////////////////////////////////
 
@@ -75,5 +91,5 @@ $("body").on("click", ".removeBlackListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.blackListRemove(name)
     await blackListLoadPage()
-    // await location.reload()
+    // location.reload()
 })

@@ -11,15 +11,14 @@
 </head>
 
 <body>
-    <button id ="watchedShowButton" onclick="watchedShowsLoadPage()" >watchedShow</button>
-    <button id ="blackListButton"onclick="blackListLoadPage()">blackList</button>
-    <button id ="wishListButton"onclick="wishListLoadPage()">wishList</button>
-
-  <input type="text" placeholder="search" id="input" required>
-  <button id="searchbutton" onclick="showSearch()">Search</button>
+  <button id="watchedShowButton" onclick="watchedShowsLoadPage()">watchedShow</button>
+  <button id="blackListButton" onclick="blackListLoadPage()">blackList</button>
+  <button id="wishListButton" onclick="wishListLoadPage()">wishList</button>
+  <button id="searchButton" onclick="searchLoadPage()">search</button>
 
   <script id="first-template" type="text/x-handlebars-template">
-
+  <input type="text" placeholder="search" id="input" required>
+  <button id="searchbutton" onclick="showSearch()">Search</button>
     {{#each menu}}
     
     <div class="show">
@@ -29,7 +28,11 @@
       <button class ="watchedShowButton" >watchedShow</button>
       <button class ="blackListButton">blackList</button>
       <button class ="wishListButton">wishList</button>
-
+      <p class="language">language:{{language}}</p>
+      <p class="runTime">runTime:{{runTime}}</p>
+      <p class="rating">rating:{{rating}}</p>
+      <p class="genres">genres:{{genres}}</p>
+      <p class="summary">summary:{{summary}}</p>
       
     </div>
     {{/each}}
@@ -41,7 +44,6 @@
     {{#each menu}}
     
     <div class="show">
-      <p>{{premiered}}</p> 
       <h2 class="name">{{name}}</h2>
       <img class="imgS" src={{mediumImg}} >
       <button class ="removeSohwButton">remove show</button>
@@ -58,7 +60,6 @@
     {{#each menu}}
     
     <div class="show">
-      <p>{{premiered}}</p> 
       <h2 class="name">{{name}}</h2>
       <img class="imgS" src={{mediumImg}}>
       <button class ="removeBlackListButton" >remove from blacklist</button>
@@ -69,16 +70,15 @@
     
   </script>
 
-  
+
   <script id="wishList-template" type="text/x-handlebars-template">
 
     {{#each menu}}
     
-    <div class="show">
-      <p>{{premiered}}</p> 
+    <div class="show"> 
       <h2 class="name">{{name}}</h2>
       <img class="imgS" src={{mediumImg}}>
-      <button class ="watchedShowButton" >watchedShow</button>
+      <button class ="watchedShowButtonInWishList" >watchedShow</button>
       <button class ="removeWishListButton">remove wishList</button>
 
       

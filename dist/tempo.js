@@ -89,6 +89,16 @@ class TempManager {
     }
 
 
+    watchedShowwSave(showName) {
+        this.wishListDB()
+        const showD =this.wishList.find(s => s.name === showName)
+         $.post('/watchedShow', showD ,function(data,status){
+            console.log("status:",status)
+            console.log('data:',data)
+        })
+    }
+
+
 
     wishListRemove(showName) {
         $.ajax({

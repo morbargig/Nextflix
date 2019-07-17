@@ -16,23 +16,28 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.get("/show/:showname", function (req, res) {
     const showname = req.params.showname
     request(`http://api.tvmaze.com/singlesearch/shows?q=${showname}`, function (error, response,body) {
-        let data = JSON.parse(body)
+        if(body){
+            let data = JSON.parse(body || '{}')
         let newData = {
             name : data.name,
-            language : data.language,
-            genres: data.genres,
-            premiered:data.premiered,
-            rating:data.rating.average,
-            mediumImg:data.image.medium,
-            originalImag:data.image.original,
-            summary:data.summary,
-            runTime:data.runtime,
-            status:data.status,
-            id:data.id,
+            language : data.language|| "doesn't exist",
+            genres: data.genres|| [],
+            premiered:data.premiered|| 000000,
+            rating:data.rating ? data.rating.average : 0,
+            mediumImg: data.image ? data.image.medium : "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhUQBxMWFRUXFhYYGBcVFxYbFhUWFxgYGhgXFhgaHSggGB0lHhYXJTEhJSkvLi4uFx8zODMsNygtLisBCgoKBQUFDgUFDisZExkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAOAA4AMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUCAwYBB//EADcQAQABAwICCAIIBgMAAAAAAAABAgMRBAUhMRJBUWFxgZGhEzMGIzJyscHw8RUiJEJi0SU0Uv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD68AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACNuGrjR2YqmM5nGASRX2d40tz7eafFNt3rV2PqqonwkGY1379uxRm7OPKVde3yzT8mmZ8eEAtRF27VTq9P0qoxOZiYhKAAAAAAAAAAAAAAAAAAABQ7zf1NvVzTFUxTiJiI4friC6u37NmPraojxlT7/d6V6minqjPnP7PdLs134kVX6o5xOOcy0x/Wb13dL2p/YE/+Daeq1HOJxxx2ol3Zb1E5sVRPtK31eop0tia6+OOrvRtu3KNZXNNUYnn3Arvibpo/tdKY7/5o9Xn8Q093/tWqZ744S6Fpu6Wxe+ZTE/j6ggbdqNBZzFqqYzjhV1ea0prprj+SYnwmJVt7ZLFXy5mn3hCubTq9Pxs1ROOycT6A6AUuzarU39T0a6sxETM59uK6AAAAAAAAAAAAAAAAAU/0htZoprjwnzXCLudr42hqjsjPoDXp9V/xHTnnFMx5xwj8kH6PWs3Kq56ox682q5M2dlpj/3VM+Ufss9mtRa0ETPXmQS79mi/amm5ylH0egs6OZmiZz2z1KzcN1qqvxGmnhTOfvT/AKYbjulWpp6NnhHX2zP+gX9u5RdozbnMNOt1lrSW83OfVHXKj2/catHaqpxns7pRL965fuTVdnMyDrqKulRE9sIu6XfhaGrvjEefD8Mtmgq6eion/GFd9IbuKaaI8QZfR61i1VXPXOPKFsjbda+DoqY7s+vFJAAAAAAAAAAAAAAAAAJiJjiHiDnd6qpi/Tbo5UUxH69k7TbtpfhxTXE04iI5Zj2U2qu/G1NVXbM+nV7NQOkmxt+sj+Toz92cT6I17Y6J+TVMePFSRwngk2dfqrP2ap8+P4g23tq1dvlHS+7P5c0Kuiu3OK4mPGFrZ3yuPnUxPhOEyjc9FqIxc4d1UAz2arpbdT3Zj3Veu/q946McsxT6c/zXVurT2bEzYxiMzwU2yUTe1011dUTPnP6kHQeAAAAAAAAAAAAAAAAAADC9RNy1NNM4mYmMswHO3tn1Vv7GKvDmg3LVy1P1kTHjDq9VRVXpqotzicTiY556nP2911NMYuTFUdlUQCC9WluvS6ycVWaontt5/Dk23NkzGbNWO6qAUwmXtr1dr+3Mf48USqmqicVxMeMYB5EzHJf7Ba6Olmqf7p9oc+67SWvg6amnsiPXrBtAAAAAAAAAAAAAAAAAAAARre36W3VmKY8+KSARERGIAAY10UXIxciJ8WQCHVtekqriYpxMTnhyTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//Z",
+            originalImag: data.image ? data.image.original : "doesn't exist",
+            summary:data.summary|| "doesn't exist",
+            runTime:data.runtime|| 0,
+            status:data.status|| "doesn't exist",
+            id:data.id|| 0,
+            }
+            res.send(newData)
         }
-
-        res.send(newData)
-    })
+        else{res.send('')}
+        }
+        
+      
+    )
 
 })
 
@@ -57,7 +62,7 @@ router.get("/wishList",function(req,res){
 
 router.post('/watchedShow', function (req, res) {
     let info = req.body
-    // if(info !== )
+
     let ws1 = new watchedShow(info)
     ws1.save()
 

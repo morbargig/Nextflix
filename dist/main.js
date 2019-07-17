@@ -4,6 +4,7 @@ const render = new Render
 
 
 const blackListLoadPage = async function () {
+    tempMeneger.blackList = []
     await tempMeneger.blackListDB()
     const d = tempMeneger.blackList
     await render.renderer(d,'blackList')
@@ -11,18 +12,17 @@ const blackListLoadPage = async function () {
 
 
 const watchedShowsLoadPage = async function () {
-
+    tempMeneger.watchedShows = []
     await tempMeneger.watchedShowsDB()
     const d = tempMeneger.watchedShows
-<<<<<<< HEAD
+
     await render.renderer(d,'watchedShow')
-=======
-        await render.renderer(d,'watchedShow')
->>>>>>> master
+        
 }
 
 
 const wishListLoadPage = async function () {
+    tempMeneger.wishList = []
     await tempMeneger.wishListDB()
     const d = tempMeneger.wishList
     await render.renderer(d,'wishList')
@@ -34,6 +34,7 @@ const showSearch = async function () {
     const input = $("#input").val()
     await tempMeneger.getShowData(input)
     const d = tempMeneger.standby
+    console.log(d)
     await render.renderer(d,"first")
 }
 
@@ -58,37 +59,21 @@ $("body").on("click", ".wishListButton", function () {
 $("body").on("click", ".removeSohwButton",async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowsRemove(name)
-<<<<<<< HEAD
-    watchedShowsLoadPage()
-=======
+    // await location.reload()
     await watchedShowsLoadPage()
->>>>>>> master
-    await location.reload()
 })
 
 $("body").on("click", ".removeWishListButton", async function () {
     const name = $(this).siblings('h2').text()
-<<<<<<< HEAD
-    await tempMeneger.wishListRemove(name)
-    wishListLoadPage()
-=======
     console.log(name)
     await tempMeneger.wishListRemove(name)
     await wishListLoadPage()
->>>>>>> master
-    await location.reload()
+    // await location.reload()
 })
 
 $("body").on("click", ".removeBlackListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.blackListRemove(name)
-<<<<<<< HEAD
-    blackListLoadPage()
-    await location.reload()
-})
- 
-=======
     await blackListLoadPage()
-    await location.reload()
+    // await location.reload()
 })
->>>>>>> master

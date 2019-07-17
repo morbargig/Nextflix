@@ -7,11 +7,34 @@ class TempManager {
 
     }
 
+    // async getShowData(showName) {
+    //     const res = await $.get(`/show/${showName}`)        
+    //     this.standby.push(res)
+    //     console.log(res)
+    // }
     async getShowData(showName) {
-        const res = await $.get(`/show/${showName}`)        
-        this.standby.push(res)
+        let res = await $.ajax({
+            method:"GET",
+            url:`/show/${showName}` ,
+            success: function(data){
+                console.log(data)
+            },
+            
+            error: function(data){
+                console.log(data)
+                alert("error ")
+            }
+            
+        })
+
         console.log(res)
-       
+        if(res){
+
+            this.standby.push(res)
+        }
+        else{
+            alert("The show you are looking for doesn't exist")
+        }
     }
 
 

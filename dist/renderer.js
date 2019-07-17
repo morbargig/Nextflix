@@ -1,4 +1,5 @@
 class Render {
+    
     constructor() {
 
     }
@@ -12,9 +13,4 @@ class Render {
         const newHTML = template({menu:shows});
         $('.showsInfo').append(newHTML);
     }
-
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

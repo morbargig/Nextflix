@@ -53,18 +53,21 @@ $("body").on("click", ".wishListButton", function () {
 $("body").on("click", ".removeSohwButton",async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowsRemove(name)
+    watchedShowsLoadPage()
     await location.reload()
 })
 
 $("body").on("click", ".removeWishListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.wishListRemove(name)
+    wishListLoadPage()
     await location.reload()
 })
 
 $("body").on("click", ".removeBlackListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.blackListRemove(name)
+    blackListLoadPage()
     await location.reload()
 })
  

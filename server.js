@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'dist')))
 const request = require("request")
 const mongoose = require('mongoose')
-const api = require('./root/api')
+const api = require('./rout/api')
 app.use("/", api)
 
 

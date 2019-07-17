@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const watchedShowsSchema = new Schema({
     name: String,
     language : String,
-    genres: [String],
+    genres: Array,
     premiered: Date,
     rating: Number,
     mediumImg: String,

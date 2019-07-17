@@ -13,4 +13,8 @@ class Render {
         $('.showsInfo').append(newHTML);
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

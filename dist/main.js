@@ -11,9 +11,14 @@ const blackListLoadPage = async function () {
 
 
 const watchedShowsLoadPage = async function () {
+
     await tempMeneger.watchedShowsDB()
     const d = tempMeneger.watchedShows
+<<<<<<< HEAD
     await render.renderer(d,'watchedShow')
+=======
+        await render.renderer(d,'watchedShow')
+>>>>>>> master
 }
 
 
@@ -53,21 +58,37 @@ $("body").on("click", ".wishListButton", function () {
 $("body").on("click", ".removeSohwButton",async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowsRemove(name)
+<<<<<<< HEAD
     watchedShowsLoadPage()
+=======
+    await watchedShowsLoadPage()
+>>>>>>> master
     await location.reload()
 })
 
 $("body").on("click", ".removeWishListButton", async function () {
     const name = $(this).siblings('h2').text()
+<<<<<<< HEAD
     await tempMeneger.wishListRemove(name)
     wishListLoadPage()
+=======
+    console.log(name)
+    await tempMeneger.wishListRemove(name)
+    await wishListLoadPage()
+>>>>>>> master
     await location.reload()
 })
 
 $("body").on("click", ".removeBlackListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.blackListRemove(name)
+<<<<<<< HEAD
     blackListLoadPage()
     await location.reload()
 })
  
+=======
+    await blackListLoadPage()
+    await location.reload()
+})
+>>>>>>> master

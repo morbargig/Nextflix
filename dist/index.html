@@ -11,11 +11,22 @@
 </head>
 
 <body>
-  <button id="watchedShowButton" onclick="watchedShowsLoadPage()">watchedShow</button>
-  <button id="blackListButton" onclick="blackListLoadPage()">blackList</button>
-  <button id="wishListButton" onclick="wishListLoadPage()">wishList</button>
-  <button id="searchButton" onclick="searchLoadPage()">search</button>
+    <div class="sticky-bar">
+        <div class="High">NextFlix</div>
+        <div class="container" onclick="myFunction(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
 
+      <div class="slider">
+        <button id="watchedShowButton" onclick="watchedShowsLoadPage()">watchedShow</button>
+        <button id="blackListButton" onclick="blackListLoadPage()">blackList</button>
+        <button id="wishListButton" onclick="wishListLoadPage()">wishList</button>
+        <button id="searchButton" onclick="searchLoadPage()">search</button>
+      </div>
+        
   <script id="first-template" type="text/x-handlebars-template">
   <input type="text" placeholder="search" id="input" required>
   <button id="searchbutton" onclick="showSearch()">Search</button>
@@ -32,7 +43,7 @@
       <p class="runTime">runTime:{{runTime}}</p>
       <p class="rating">rating:{{rating}}</p>
       <p class="genres">genres:{{genres}}</p>
-      <p class="summary">summary:{{summary}}</p>
+      <p class="summary">summary:{{summary}}</p> 
       
     </div>
     {{/each}}

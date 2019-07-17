@@ -12,5 +12,6 @@ class Render {
         const template = Handlebars.compile(source);
         const newHTML = template({menu:shows});
         $('.showsInfo').append(newHTML);
-    }
+        
+    }   
 }

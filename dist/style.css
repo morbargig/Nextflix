@@ -1,0 +1,105 @@
+:root {
+    --prime:  #221f1f ;
+    --sub-prime: #e50914;
+    --sub-sub: #696969;
+    --third:#f5f5f1 ;
+    font-family: 'Nunito Sans', sans-serif;
+}
+body{
+    background-color : var(--prime);
+    color: var(--sub-prime);
+    padding:0;
+    margin: 0;
+}
+.sticky-bar{
+    height: calc(16px + 8vw);
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color:var(--sub-prime);
+
+}
+
+.container {
+    align-self: center;
+    margin-right:10px;
+    justify-self: right;
+    display: inline-block;
+    cursor: pointer;
+    transition: 0.6s;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 7vw;
+    height: 5px;
+    background-color: var(--third);
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+  
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  
+  .change .bar2 {opacity: 0;}
+  
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+  
+  .slider {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      width: 100vw;
+      overflow-y: hidden;
+      height: 0;
+      transition: height 0.6s;
+  }
+  .opened-slider {
+      height: calc(20px + 10vw);
+  }
+  button{
+    background-color: var(--sub-sub);
+    border: none;
+    color: var(--prime);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+    #input {
+        float:center;
+        margin-top: 2vw;
+        text-align: center;
+        font-size: calc(14px + 4vw);
+        padding: 4vw;
+        border-radius: 5vw;
+        height: 2vw;
+        width:50vw;
+        outline: none;
+        transition: 1s ;
+    }
+    #input:hover{
+
+    }
+
+    #searchbutton {
+
+        float:center;
+        font-size:calc(13px + 3vw);
+        border-radius:1vw;
+        transition : 1s;
+    }
+    #searchbutton:hover {
+        font-size:calc(16px + 5vw);
+        border-radius:2vw;
+    }
+
+  .High {
+     margin-left: 10px;
+     align-self: center;
+     color: var(--prime);
+     font-size: calc(16px + 5vw);
+  }

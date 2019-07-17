@@ -65,7 +65,7 @@ $("body").on("click", ".watchedShowButtonInWishList",async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowwSave(name)
     await tempMeneger.wishListRemove(name)
-    await wishListLoadPage()
+     wishListLoadPage()
 
 })
 
@@ -92,4 +92,23 @@ $("body").on("click", ".removeBlackListButton", async function () {
     await tempMeneger.blackListRemove(name)
     await blackListLoadPage()
     // location.reload()
+})
+
+
+
+///////for css 
+function myFunction(x) {
+    x.classList.toggle("change");
+  }
+
+  let a=0
+$("body").on("click", ".container", function(){
+    if(a==0) {
+        $(".slider").addClass("opened-slider")
+        a=1
+    }
+    else{
+        a=0
+        console.log("achmed")
+        $(".slider").removeClass("opened-slider")}
 })

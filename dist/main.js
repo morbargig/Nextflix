@@ -6,21 +6,21 @@ const render = new Render
 const blackListLoadPage = async function () {
     await tempMeneger.blackListDB()
     const d = tempMeneger.blackList
-    await render.renderer(d)
+    await render.blackListRender(d)
 }
 
 
 const watchedShowsLoadPage = async function () {
     await tempMeneger.watchedShowsDB()
     const d = tempMeneger.watchedShows
-    await render.renderer(d)
+    await render.watchedShowRender(d)
 }
 
 
 const wishListLoadPage = async function () {
     await tempMeneger.wishListDB()
     const d = tempMeneger.wishList
-    await render.renderer(d)
+    await render.wishListRender(d)
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -36,6 +36,56 @@
     
   </script>
 
+  <script id="watchedShowtemplate" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="removeSohwButton">remove show</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
+
+
+  <script id="blackListtemplate" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="removeBlackListButton" >remove from blacklist</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
+
+  
+  <script id="wishListtemplate" type="text/x-handlebars-template">
+
+    {{#each menu}}
+    
+    <div class="show">
+      <p>{{premiered}}</p> 
+      <h2 class="name">{{name}}</h2>
+      <img class="imgS" src={{mediumImg}}>
+      <button class ="watchedShowButton" >watchedShow</button>
+      <button class ="removeWishListButton">remove wishList</button>
+
+      
+    </div>
+    {{/each}}
+    
+  </script>
 
   <div class="showsInfo">
 

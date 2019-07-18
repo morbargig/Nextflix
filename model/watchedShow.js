@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 
 
-const watchedShowsSchema = new Schema({
+const watchedShowSchema = new Schema({
     name: String,
     language : String,
     genres: Array,
@@ -19,6 +19,6 @@ const watchedShowsSchema = new Schema({
 })
 
 
-const  watchedShow = mongoose.model("watchedShows", watchedShowsSchema)
+const  watchedShow = mongoose.model("watchedShow", watchedShowSchema)
 
 module.exports = watchedShow

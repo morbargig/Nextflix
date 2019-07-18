@@ -1,10 +1,10 @@
 class TempManager {
     constructor() {
         this.standby = []
-        this.watchedShows = []
+        this.watchedShow = []
         this.blackList = []
         this.wishList = []
-
+        this.homeScreen=[]
     }
 
     // async getShowData(showName) {
@@ -12,6 +12,25 @@ class TempManager {
     //     this.standby.push(res)
     //     console.log(res)
     // }
+
+    async getHomeScreen() {
+        let res = await $.ajax({
+            method:"GET",
+            url:`/homeScreen` ,
+            success: function(data){
+                console.log(data)
+            },
+ 
+            error: function(data){
+                console.log(data)
+                alert("error ")
+            }
+ 
+ 
+        })
+        this.homeScreen.push(res)
+    }
+
     async getShowData(showName) {
         let res = await $.ajax({
             method:"GET",
@@ -26,8 +45,6 @@ class TempManager {
             }
             
         })
-
-        console.log(res)
         if(res){
 
             this.standby.push(res)
@@ -38,12 +55,12 @@ class TempManager {
     }
 
 
-
-    async watchedShowsDB() {
-        let data = await $.get('/watchedShows',function(res){
+    /////////get from db
+    async watchedShowDB() {
+        let data = await $.get('/watchedShow',function(res){
          return  res
         })
-    data.forEach(d => this.watchedShows.push(d));
+    data.forEach(d => this.watchedShow.push(d));
     }
 
     async blackListDB() {
@@ -61,7 +78,7 @@ class TempManager {
     data.forEach(d => this.wishList.push(d));
     }
 
-
+    /////////////saveDB
     wishListSave(showName) {
         const showD =this.standby.find(s => s.name === showName)
          $.post('/wishList', showD ,function(data,status){
@@ -97,8 +114,36 @@ class TempManager {
             console.log('data:',data)
         })
     }
+/////////////save from watchedShows 
+
+wishListSave2(showName) {
+    const showD =this.homeScreen.find(s => s.name === showName)
+     $.post('/wishList', showD ,function(data,status){
+        console.log("status:",status)
+        console.log('data:',data)
+    })
+}
 
 
+
+blackListSave2(showName) {
+    const showD =this.homeScreen.find(s => s.name === showName)
+     $.post('/blackList', showD ,function(data,status){
+        console.log("status:",status)
+        console.log('data:',data)
+    })
+}
+
+watchedShowSave2(showName) {
+    const showD =this.homeScreen.find(s => s.name === showName)
+     $.post('/watchedShow', showD ,function(data,status){
+        console.log("status:",status)
+        console.log('data:',data)
+    })
+}
+
+
+////////////////remove
 
     wishListRemove(showName) {
         $.ajax({
@@ -121,7 +166,7 @@ class TempManager {
     }
     
 
-    watchedShowsRemove(showName) {
+    watchedShowRemove(showName) {
         $.ajax({
             method:"DELETE",
             url:`/watchedShow/${showName}` ,

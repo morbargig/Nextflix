@@ -8,43 +8,49 @@
   <link rel="stylesheet" href="style.css">
   <title>What Next</title>
   <script src="https://kit.fontawesome.com/b2a1daf7be.js"></script>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
   <div class="sticky-bar">
     <div class="High">NextFlix</div>
-    <div class="container" onclick="myFunction(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
+    <div class="myContainer" onclick="myFunction(this)">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
     </div>
-    
-    <div class="slider">
-    <button id="discoverButton" onclick="homeScreenLoadPage()">discover your next show</button>
-    <button id="watchedShowButton" onclick="watchedShowLoadPage()">watched Show</button>
-    <button id="blackListButton" onclick="blackListLoadPage()">black List</button>
-    <button id="wishListButton" onclick="wishListLoadPage()">wish List</button>
-    <button id="searchButton" onclick="searchLoadPage()">search</button>
+  </div>
+
+  <div class="mySlider">
+    <button id="discoverButton3" onclick="homeScreenLoadPage()">discover your next show</button>
+    <button id="watchedShowButton3" onclick="watchedShowLoadPage()">watched Show</button>
+    <button id="blackListButton3" onclick="blackListLoadPage()">black List</button>
+    <button id="wishListButton3" onclick="wishListLoadPage()">wish List</button>
+    <button id="searchButton3" onclick="searchLoadPage()">search</button>
   </div>
 
 
   <script id="homeScreen-template" type="text/x-handlebars-template">
 
     {{#each menu}}
-      
-      <div class="show" id="{{id}}">
-        <p>{{premiered}}</p> 
+    <div class="show" id="{{id}}">
+      <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
         <h2 class="name">{{name}}</h2>
         <img class="imgS" src={{mediumImg}}>
-        <button class ="watchedShowButton2" >watchedShow</button>
+        <br>
+        <a id ="watchedShowButton2" class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>watchedShow</a>
+        <a id ="blackListButton2" class="waves-effect waves-light btn"><i class="material-icons left">remove_circle_outline</i>blackList</a>
+        <a id ="wishListButton2" class="waves-effect waves-light btn"><i class="material-icons left">star_border</i>wishList</a>
+         <!-- <button class ="watchedShowButton2" >watchedShow</button>
         <button class ="blackListButton2">blackList</button>
-        <button class ="wishListButton2">wishList</button>
+        <button id ="wishListButton2">wishList</button>  -->
         <p class="language">language:{{language}}</p>
         <p class="runTime">runTime:{{runTime}}</p>
         <p class="rating">rating:{{rating}}</p>
         <p class="genres">genres:{{genres}}</p>
-        <p class="summary">summary:{{summary}}</p> 
+       
         
       </div>
     {{/each}}
@@ -57,32 +63,24 @@
     <button id="searchbutton" onclick="showSearch()">Search</button>
     {{#each menu}}
 
-    <div class="show" id="{{id}}">
-    <div class="card promoting-card">
+   <div class="show" id="{{id}}">
       <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
-    </div>
-    <div class="view overlay">
-      <img id="imgS" class="card-img-top rounded-0" src={{mediumImg}} alt="Card image cap">
-      <a href="#!">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-    <div class="card-body">
         <h2 class="name">{{name}}</h2>
-        <button class ="watchedShowButton" >watchedShow</button>
-        <button class ="blackListButton">blackList</button>
-        <button class ="wishListButton">wishList</button>
-      <div class="collapse-content">
-        <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
-        <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
-        <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+        <img class="imgS" src={{mediumImg}}>
+        <br>
+        <a id ="watchedShowButton4" class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>watchedShow</a>
+        <a id ="blackListButton4" class="waves-effect waves-light btn"><i class="material-icons left">remove_circle_outline</i>blackList</a>
+        <a id ="wishListButton4" class="waves-effect waves-light btn"><i class="material-icons left">star_border</i>wishList</a>
+         <!-- <button class ="watchedShowButton2" >watchedShow</button>
+        <button class ="blackListButton2">blackList</button>
+        <button id ="wishListButton2">wishList</button>  -->
         <p class="language">language:{{language}}</p>
         <p class="runTime">runTime:{{runTime}}</p>
         <p class="rating">rating:{{rating}}</p>
         <p class="genres">genres:{{genres}}</p>
+       
+        
       </div>
-    </div>
-    </div>
     {{/each}}
     
   </script>
@@ -91,44 +89,136 @@
 
     {{#each menu}}
     
-    <div class="show">
-      <h2 class="name">{{name}}</h2>
-      <img class="imgS" src={{mediumImg}} >
-      <button class ="removeSohwButton">remove show</button>
-
+    <div class="show" id="{{id}}">
+        <div class="card promoting-card">
+          <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
+        </div>
+        <div class="view overlay">
+          <img id="imgS" class="card-img-top rounded-0" src={{mediumImg}} alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body">
+            <h2 class="name">{{name}}</h2>
+            <a id ="removeSohwButton" class="waves-effect waves-light btn"><i class="material-icons left">delete</i>remove show</a>
+            <!-- <button class ="removeSohwButton">remove show</button> -->
+          <div class="collapse-content">
+            <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+            <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
+            <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+            <p class="language">language:{{language}}</p>
+            <p class="runTime">runTime:{{runTime}}</p>
+            <p class="rating">rating:{{rating}}</p>
+            <p class="genres">genres:{{genres}}</p>
+          </div>
+        </div>
+        </div>
       
     </div>
     {{/each}}
     
   </script>
+
 
 
   <script id="blackList-template" type="text/x-handlebars-template">
 
     {{#each menu}}
     
-    <div class="show">
-      <h2 class="name">{{name}}</h2>
-      <img class="imgS" src={{mediumImg}}>
-      <button class ="removeBlackListButton" >remove from blacklist</button>
-
+    <div class="show" id="{{id}}">
+        <div class="card promoting-card">
+          <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
+        </div>
+        <div class="view overlay">
+          <img id="imgS" class="card-img-top rounded-0" src={{mediumImg}} alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body">
+            <h2 class="name">{{name}}</h2>
+            <a id ="removeBlackListButton" class="waves-effect waves-light btn"><i class="material-icons left">delete</i>remove from blacklist</a>
+                        <!-- <button class ="removeBlackListButton" >remove from blacklist</button> -->
+          <div class="collapse-content">
+            <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+            <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
+            <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+            <p class="language">language:{{language}}</p>
+            <p class="runTime">runTime:{{runTime}}</p>
+            <p class="rating">rating:{{rating}}</p>
+            <p class="genres">genres:{{genres}}</p>
+          </div>
+        </div>
+        </div>
       
-    </div>
+      
     {{/each}}
     
   </script>
 
 
   <script id="wishList-template" type="text/x-handlebars-template">
+    {{#each menu}}
+    <div class="show" id="{{id}}">
+        <div class="card promoting-card">
+          <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
+        </div>
+        <div class="view overlay">
+          <img id="imgS" class="card-img-top rounded-0" src={{mediumImg}} alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body">
+            <h2 class="name">{{name}}</h2>
+            <a id ="watchedShowButtonInWishList" class="waves-effect waves-light btn"><i class="material-icons left">delete</i>remove from wish List</a>
+            <a id ="removeWishListButton" class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>watchedShow</a>
+            <!-- <button class ="watchedShowButtonInWishList" >watchedShow</button>
+            <button class ="removeWishListButton">remove wishList</button> -->
+          <div class="collapse-content">
+            <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+            <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
+            <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+            <p class="language">language:{{language}}</p>
+            <p class="runTime">runTime:{{runTime}}</p>
+            <p class="rating">rating:{{rating}}</p>
+            <p class="genres">genres:{{genres}}</p>
+          </div>
+        </div>
+        </div>
+    {{/each}}
+  </script>
+
+  <script id="watchedShow-template" type="text/x-handlebars-template">
 
     {{#each menu}}
     
-    <div class="show"> 
-      <h2 class="name">{{name}}</h2>
-      <img class="imgS" src={{mediumImg}}>
-      <button class ="watchedShowButtonInWishList" >watchedShow</button>
-      <button class ="removeWishListButton">remove wishList</button>
-
+    <div class="show" id="{{id}}">
+        <div class="card promoting-card">
+          <p class="card-text"><i class="far fa-clock pr-2"></i>{{premiered}}</p>
+        </div>
+        <div class="view overlay">
+          <img id="imgS" class="card-img-top rounded-0" src={{mediumImg}} alt="Card image cap">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body">
+            <h2 class="name">{{name}}</h2>
+            <a id ="removeSohwButton" class="waves-effect waves-light btn"><i class="material-icons left">delete</i>remove show</a>
+            <!-- <button class ="removeSohwButton">remove show</button> -->
+          <div class="collapse-content">
+            <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+            <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
+            <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+            <p class="language">language:{{language}}</p>
+            <p class="runTime">runTime:{{runTime}}</p>
+            <p class="rating">rating:{{rating}}</p>
+            <p class="genres">genres:{{genres}}</p>
+          </div>
+        </div>
+        </div>
       
     </div>
     {{/each}}

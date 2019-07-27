@@ -11,35 +11,49 @@ const blackListLoadPage = async function () {
 }
 
 
-const watchedShowLoadPage = async function () {
+const watchedShowLoadPage = async function (a) {
     tempMeneger.watchedShow = []
     await tempMeneger.watchedShowDB()
-    let d = tempMeneger.watchedShow
-
-    await render.renderer(d, 'watchedShow')
+    if ( a === undefined){
+        noBleckList(tempMeneger.watchedShow, watchedShowLoadPage,tempMeneger.watchedShowRemove)
+    }
+    await render.renderer(tempMeneger.watchedShow, 'watchedShow')
 
 }
 
 
-const wishListLoadPage = async function () {
+const wishListLoadPage = async function (a) {
     tempMeneger.wishList = []
     await tempMeneger.wishListDB()
-    let d = tempMeneger.wishList
-    await render.renderer(d, 'wishList')
+    // console.log('hi')
+    if ( a === undefined){
+        noBleckList(tempMeneger.wishList, wishListLoadPage,tempMeneger.wishListRemove)
+    }
+    // console.log('hi')
+    // if ( a === 1){
+    //     wishListLoadPage()
+    // }
+    await render.renderer(tempMeneger.wishList, 'wishList')
 }
 
 
-const homeScreenLoadPage = async function () {
+const homeScreenLoadPage = async function (a) {
     tempMeneger.homeScreen = []
     await tempMeneger.getHomeScreen()
-    const d = tempMeneger.homeScreen
-    await render.renderer(d, 'homeScreen')
+    tempMeneger.wishListRemove
+    if ( a === undefined){
+        noBleckList(tempMeneger.wishList, wishListLoadPage, enter)
+    }
+    await render.renderer(tempMeneger.homeScreen, 'homeScreen')
 }
 
 
 //////////////////////////////////////////////////////////////////////
 const searchLoadPage = async function () {
     tempMeneger.wishList = []
+    // console.log('hi')
+    noBleckList(tempMeneger.standby,searchLoadPage)
+    // console.log('hi')
     await render.renderer(tempMeneger.wishList, "first")
     enter()
 }
@@ -52,7 +66,7 @@ const showSearch = async function () {
 }
 
 //////////////////////////on click render
-$("body").on("click", ".blackListButton2", async function () {
+$("body").on("click", "#blackListButton2", async function () {
     const name = $(this).siblings('h2').text()
     // tempMeneger.blackList = []
     // await tempMeneger.blackList2DB()
@@ -60,8 +74,9 @@ $("body").on("click", ".blackListButton2", async function () {
     await homeScreenLoadPage()
 
 })
-$("body").on("click", ".watchedShowButton2", async function () {
+$("body").on("click", "#watchedShowButton2", async function () {
     const name = $(this).siblings('h2').text()
+    console.log(name)
     // tempMeneger.watchedShows = []
     // await tempMeneger.watchedShowsDB()
     await tempMeneger.watchedShowSave2(name)
@@ -70,7 +85,34 @@ $("body").on("click", ".watchedShowButton2", async function () {
 })
 
 
-$("body").on("click", ".wishListButton2", async function () {
+$("body").on("click", "#wishListButton2", async function () {
+    const name = $(this).siblings('h2').text()
+    // tempMeneger.wishList = []
+    // await tempMeneger.wishListDB()
+    await tempMeneger.wishListSave2(name)
+    await homeScreenLoadPage()
+
+})
+$("body").on("click", "#blackListButton4", async function () {
+    const name = $(this).siblings('h2').text()
+    // tempMeneger.blackList = []
+    // await tempMeneger.blackList2DB()
+    await tempMeneger.blackListSave2(name)
+    await homeScreenLoadPage()
+
+})
+$("body").on("click", "#watchedShowButton4", async function () {
+    const name = $(this).siblings('h2').text()
+    console.log(name)
+    // tempMeneger.watchedShows = []
+    // await tempMeneger.watchedShowsDB()
+    await tempMeneger.watchedShowSave2(name)
+    await homeScreenLoadPage()
+
+})
+
+
+$("body").on("click", "#wishListButton4", async function () {
     const name = $(this).siblings('h2').text()
     // tempMeneger.wishList = []
     // await tempMeneger.wishListDB()
@@ -79,7 +121,7 @@ $("body").on("click", ".wishListButton2", async function () {
 
 })
 ///////////////////////////
-$("body").on("click", ".watchedShowButton",async function () {
+$("body").on("click", "#watchedShowButton", async function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.watchedShow = []
     await tempMeneger.watchedShowDB()
@@ -110,7 +152,7 @@ $("body").on("click", ".watchedShowButton",async function () {
     }
 })
 
-$("body").on("click", ".blackListButton",async function () {
+$("body").on("click", "#blackListButton", async function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.blackList = []
     await tempMeneger.blackListDB()
@@ -142,7 +184,7 @@ $("body").on("click", ".blackListButton",async function () {
 })
 
 
-$("body").on("click", ".wishListButton",async function () {
+$("body").on("click", "#wishListButton", async function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.wishList = []
     await tempMeneger.wishListDB()
@@ -174,7 +216,7 @@ $("body").on("click", ".wishListButton",async function () {
 })
 
 
-$("body").on("click", ".watchedShowButtonInWishList", async function () {
+$("body").on("click", "#watchedShowButtonInWishList", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowwSave(name)
     await tempMeneger.wishListRemove(name)
@@ -183,27 +225,55 @@ $("body").on("click", ".watchedShowButtonInWishList", async function () {
 })
 
 
+const noBleckList = function (listName, callback, callback2) {
+    // console.log("1")
+    // console.log(listName)
+    tempMeneger.blackListDB()
+    let counter = -1
+    for (let i of listName) {
+        // console.log('3')
+        if (listName[0].name === undefined){
+            // console.log('4')
+            break
+        }
+        counter = counter + 1
+        for (let a of tempMeneger.blackList) {
+            if (i.name === a.name) {
+                // console.log("2")
+                alert(`this show ${i.name} is on black list, we will remove her `)
+                // console.log(listName)
+                let name = listName[counter].name
+                listName.splice(counter,1)
+                // console.log(i)
+                // console.log(counter)
+                callback(1)
+                callback2(name)
+                break               
+            } 
+        }
+    }
+}
 
 /////////////////////////on click remove
 
-$("body").on("click", ".removeSohwButton", async function () {
+$("body").on("click", "#removeSohwButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.watchedShowRemove(name)
     await watchedShowLoadPage()
 })
 
-$("body").on("click", ".removeWishListButton", async function () {
+$("body").on("click", "#removeWishListButton", async function () {
     const name = $(this).siblings('h2').text()
     console.log(name)
     await tempMeneger.wishListRemove(name)
     await wishListLoadPage()
 })
 
-$("body").on("click", ".removeBlackListButton", async function () {
+$("body").on("click", "#removeBlackListButton", async function () {
     const name = $(this).siblings('h2').text()
     await tempMeneger.blackListRemove(name)
     await blackListLoadPage()
-    
+
 })
 
 
@@ -214,15 +284,15 @@ function myFunction(x) {
 }
 
 let a = 0
-$("body").on("click", ".container", function () {
+$("body").on("click", ".myContainer", function () {
     if (a == 0) {
-        $(".slider").addClass("opened-slider")
+        $(".mySlider").addClass("opened-mySlider")
         a = 1
     }
     else {
         a = 0
-        console.log("achmed")
-        $(".slider").removeClass("opened-slider")
+        // console.log("achmed")
+        $(".mySlider").removeClass("opened-mySlider")
     }
 })
 
@@ -241,3 +311,4 @@ const enter = function () {
     });
 
 }
+

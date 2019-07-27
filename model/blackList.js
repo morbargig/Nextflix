@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const blackListSchema = new Schema({
     name: String,
     language : String,
-    genres: Array,
+    genres: [String],
     premiered: Date,
     rating: Number,
     mediumImg: String,

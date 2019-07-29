@@ -130,6 +130,16 @@ router.post('/wishList', function (req, res) {
     res.end("saved")
 })
 
+
+// router.post('/homeScreen', function (req, res) {
+//     req.body.genres = req.body["genres[]"]
+//     let info = req.body
+//     let hl1 = new homeScreen(info)
+//     hl1.save()
+
+//     res.end("saved")
+// })
+
 router.delete('/wishList/:showname', function (req, res) {
     // console.log("remove")
     const showName = req.params.showname

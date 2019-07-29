@@ -84,8 +84,7 @@ $("body").on("click", "#watchedShowButton2", async function () {
 
 })
 
-
-$("body").on("click", "#wishListButton2", async function () {
+$("body").on("click", "#wistListButton2", async function () {
     const name = $(this).siblings('h2').text()
     // tempMeneger.wishList = []
     // await tempMeneger.wishListDB()
@@ -93,35 +92,38 @@ $("body").on("click", "#wishListButton2", async function () {
     await homeScreenLoadPage()
 
 })
-$("body").on("click", "#blackListButton4", async function () {
-    const name = $(this).siblings('h2').text()
+
+ifblackList =  async function (name) {
+    // const name = $(this).siblings('h2').text()
     // tempMeneger.blackList = []
     // await tempMeneger.blackList2DB()
-    await tempMeneger.blackListSave2(name)
-    await homeScreenLoadPage()
+    await tempMeneger.blackListSave(name)
+    await searchLoadPage()
 
-})
-$("body").on("click", "#watchedShowButton4", async function () {
-    const name = $(this).siblings('h2').text()
+}
+
+ifwatchedShow =  async function (name) {
+    // const name = $(this).siblings('h2').text()
     console.log(name)
     // tempMeneger.watchedShows = []
     // await tempMeneger.watchedShowsDB()
-    await tempMeneger.watchedShowSave2(name)
-    await homeScreenLoadPage()
+    await tempMeneger.watchedShowSave(name)
+    await searchLoadPage()
 
-})
+}
 
 
-$("body").on("click", "#wishListButton4", async function () {
-    const name = $(this).siblings('h2').text()
+ifwishList =  async function (name) {
+    // const name = $(this).siblings('h2').text()
     // tempMeneger.wishList = []
     // await tempMeneger.wishListDB()
-    await tempMeneger.wishListSave2(name)
-    await homeScreenLoadPage()
+    await tempMeneger.wishListSave(name)
+    await searchLoadPage()
 
-})
+}
 ///////////////////////////
-$("body").on("click", "#watchedShowButton", async function () {
+$("body").on("click", "#watchedShowButton, #watchedShowButton2, #watchedShowButton4", async function () {
+    console.log("fgsdgs")
     const name = $(this).siblings('h2').text()
     tempMeneger.watchedShow = []
     await tempMeneger.watchedShowDB()
@@ -133,7 +135,7 @@ $("body").on("click", "#watchedShowButton", async function () {
         console.log('1')
         if (i.name == name) {
             console.log('2')
-            alert('the show you are trying to add is already existing')
+            alert(`the show ${name} you are trying to add is already existing`)
             valid = 1
             break
         }
@@ -143,16 +145,19 @@ $("body").on("click", "#watchedShowButton", async function () {
     }
     if (valid == 0) {
         console.log('3')
-        tempMeneger.watchedShowSave(name)
+        ifwatchedShow(name)
+        // tempMeneger.watchedShowSave(name)
         searchLoadPage()
     }
     else {
-        console.log('4')
-        alert('the show exists')
+        // console.log('4')
+        // alert('the show exists')
     }
 })
 
-$("body").on("click", "#blackListButton", async function () {
+
+
+$("body").on("click", "#blackListButton, #blackListButton2, #blackListButton4", async function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.blackList = []
     await tempMeneger.blackListDB()
@@ -164,7 +169,7 @@ $("body").on("click", "#blackListButton", async function () {
         console.log('1')
         if (i.name == name) {
             console.log('2')
-            alert('the show you are trying to add is already existing')
+            alert(`the show ${name} you are trying to add is already existing`)
             valid = 1
             break
         }
@@ -174,17 +179,19 @@ $("body").on("click", "#blackListButton", async function () {
     }
     if (valid == 0) {
         console.log('3')
-        tempMeneger.blackListSave(name)
+        ifblackList(name)
+        // tempMeneger.blackListSave(name)
+        // tempMeneger.wishListSave(name)
         searchLoadPage()
     }
     else {
-        console.log('4')
-        alert('the show exists')
+        // console.log('4')
+        // alert('the show exists')
     }
 })
 
 
-$("body").on("click", "#wishListButton", async function () {
+$("body").on("click", "#wishListButton, #wishListButton2 ,#wishListButton4", async function () {
     const name = $(this).siblings('h2').text()
     tempMeneger.wishList = []
     await tempMeneger.wishListDB()
@@ -196,7 +203,7 @@ $("body").on("click", "#wishListButton", async function () {
         console.log('1')
         if (i.name == name) {
             console.log('2')
-            alert('the show you are trying to add is already existing')
+            alert(`the show ${name} you are trying to add is already existing`)
             valid = 1
             break
         }
@@ -206,12 +213,13 @@ $("body").on("click", "#wishListButton", async function () {
     }
     if (valid == 0) {
         console.log('3')
-        tempMeneger.wishListSave(name)
+        ifwishList(name)
+        // tempMeneger.wishListSave(name)
         searchLoadPage()
     }
     else {
-        console.log('4')
-        alert('the show exists')
+        // console.log('4')
+        // alert('the show exists')
     }
 })
 

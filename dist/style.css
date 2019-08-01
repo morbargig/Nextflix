@@ -1,74 +1,94 @@
 :root {
-    --prime:  #221f1f ;
-    --sub-prime: #e50914;
-    --sub-sub: #696969;
-    --third:#f5f5f1 ;
-    font-family: 'Nunito Sans', sans-serif;
+  --prime:  #221f1f ;
+  --sub-prime: #e50914;
+  --sub-sub: #696969;
+  --third:#f5f5f1 ;
+  font-family: 'Nunito Sans', sans-serif;
 }
 body{
-    background-color : var(--prime);
-    color: var(--sub-prime);
-    padding:0;
-    margin: 0;
+  background-color : var(--prime);
+  color: var(--sub-prime);
+  padding:0;
+  margin: 0;
+  text-align: center;
 }
 .sticky-bar{
-    height: calc(16px + 8vw);
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    background-color:var(--sub-prime);
-
+  height: calc(16px + 8vw);
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color:var(--sub-prime);
+  
 }
 
-.container {
-    align-self: center;
-    margin-right:10px;
-    justify-self: right;
-    display: inline-block;
-    cursor: pointer;
-    transition: 0.6s;
-  }
-  
-  .bar1, .bar2, .bar3 {
-    width: 7vw;
-    height: 5px;
-    background-color: var(--third);
-    margin: 6px 0;
-    transition: 0.4s;
-  }
-  
-  .change .bar1 {
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    transform: rotate(-45deg) translate(-9px, 6px);
-  }
-  
-  .change .bar2 {opacity: 0;}
-  
-  .change .bar3 {
-    -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform: rotate(45deg) translate(-8px, -8px);
-  }
-  
-  .slider {
+p{
+font-size: 10px;
+}
+
+.myContainer {
+  align-self: center;
+  margin-right:10px;
+  justify-self: right;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 7vw;
+  height: 5px;
+  background-color: var(--third);
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
+button:not(#discoverButton,
+#watchedShowButton,
+#blackListButton,
+#wishListButton,
+#searchButton){
+background-color:var(--prime);
+color:var(--third);
+}
+  .mySlider {
       display: grid;
-      grid-template-columns: repeat(4,1fr);
+      grid-template-columns: repeat(5,1fr);
       width: 100vw;
       overflow-y: hidden;
       height: 0;
       transition: height 0.6s;
   }
-  .opened-slider {
+  .opened-mySlider {
       height: calc(20px + 10vw);
   }
   button{
     background-color: var(--sub-sub);
+    color: var(--third);
     border: none;
-    color: var(--prime);
-    padding: 15px 32px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: calc(8px + 0.9vw);
+    transition: 0.3s;
   }
+  button:hover{
+    color:var(--sub-prime);
+    background-color:var(--sub-sub);
+
+  }
+  
     #input {
         float:center;
         margin-top: 2vw;
@@ -81,9 +101,9 @@ body{
         outline: none;
         transition: 1s ;
     }
-    #input:hover{
+    /* #input:hover{
 
-    }
+    } */
 
     #searchbutton {
 
@@ -100,6 +120,25 @@ body{
   .High {
      margin-left: 10px;
      align-self: center;
+     text-align: left;
      color: var(--prime);
      font-size: calc(16px + 5vw);
+  }
+
+  .show{
+    margin-top: calc(8px + 1vw);
+    background-color:var(--third);
+    width:40vw;
+    text-align: center;
+    display:inline-block;
+    border-radius: 3vw;
+    padding:calc(8px + 1vw);
+
+  }
+  h2.name{
+    font-size: calc(10px + 2vw);
+  }
+  img.imgS{
+    height:calc(21px + 21vw);
+    width:calc(15px +15vw);
   }

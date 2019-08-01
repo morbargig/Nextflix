@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 
 
 
-const showDBSchema = new Schema({
+const homeScreenSchema = new Schema({
     name: String,
     language : String,
-    genres: Array,
+    genres: [String],
     premiered: Date,
     rating: Number,
     mediumImg: String,
@@ -19,6 +19,6 @@ const showDBSchema = new Schema({
 })
 
 
-const  showDB = mongoose.model("showDB", showDBSchema)
+const  homeScreen = mongoose.model("homeScreen", homeScreenSchema)
 
-module.exports = showDB
+module.exports = homeScreen

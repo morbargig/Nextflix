@@ -18,7 +18,7 @@ router.get('/homeScreen', function (req, res) {
 
         randomList = []
         let rdm = Math.floor(Math.random() * 43048)
-        request(`http://api.tvmaze.com/shows/${rdm}`, function (error, response, body) {
+        request(`https://api.tvmaze.com/shows/${rdm}`, function (error, response, body) {
 
             console.log(show.genres)
 
@@ -55,7 +55,7 @@ router.get('/homeScreen', function (req, res) {
 
 router.get("/show/:showname", function (req, res) {
     const showname = req.params.showname
-    request(`http://api.tvmaze.com/singlesearch/shows?q=${showname}`, function (error, response, body) {
+    request(`https://api.tvmaze.com/singlesearch/shows?q=${showname}`, function (error, response, body) {
         if (body) {
             let data = JSON.parse(body || '{}')
             // console.log(data)
